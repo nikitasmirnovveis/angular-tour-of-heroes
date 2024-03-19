@@ -13,6 +13,7 @@ import { HeroService } from '../hero.service';
   styleUrl: './hero-detail.component.scss'
 })
 export class HeroDetailComponent {
+  
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
@@ -33,5 +34,12 @@ export class HeroDetailComponent {
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero)
+        .subscribe(() => this.goBack());
+    }
   }
 }
